@@ -12,7 +12,7 @@ include_once("koneksi.php");
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>System Poliklinik</title>
+    <title>Poliklinik</title>
     <link rel="stylesheet" href="css/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
@@ -93,7 +93,9 @@ include_once("koneksi.php");
     if (isset($_GET['page'])) {
         include($_GET['page'] . ".php");
     } else {
-        echo "<br><h2>Selamat Datang di Sistem Informasi Poliklinik";
+        echo "<div style='background: linear-gradient(120deg, #a0c4ff, #dfe9f3); padding: 100px 0; text-align: center; color: #000000;'>";
+        echo "<h2>Selamat Datang di Sistem Informasi Poliklinik</h2>";
+        echo "</div>";
 
         if (isset($_SESSION['username'])) {
             //jika sudah login tampilkan username
