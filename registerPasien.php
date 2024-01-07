@@ -49,9 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-6" style="margin-top: 5rem;">
             <div class="card">
-                <div class="card-header text-center" style="font-weight: bold; font-size: 32px;">Register</div>
+                <div class="card-header text-center" style="font-weight: bold; font-size: 32px; ">Register</div>
                 <div class="card-body">
                     <form method="POST" action="index.php?page=registerPasien">
                         <?php
@@ -64,11 +64,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         }
                         ?>
                         <div class="form-group">
-                            <label for="nama">nama</label>
+                            <label for="nama">Nama</label>
                             <input type="text" name="nama" class="form-control" required placeholder="Masukkan nama anda">
                         </div>
                         <div class="form-group">
-                            <label for="alamat">alamat</label>
+                            <label for="alamat">Alamat</label>
                             <input type="text" name="alamat" class="form-control" required placeholder="Masukkan alamat anda">
                         </div>
                         <div class="form-group">
@@ -84,11 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="text" name="no_hp" class="form-control" required placeholder="Masukkan no_hp anda">
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                            <button type="submit" class="btn btn-primary btn-block" style="margin-top: 0.5rem;">Register</button>
                         </div>
                     </form>
                     <div class="text-center">
-                        <p class="mt-3">Sudah Terdaftar? <a href="index.php?page=loginPasien">Cek Nomor RM</a></p>
+                        <p class="mt-3">Sudah Terdaftar? <a href="index.php?page=CekRM">Cek Nomor RM</a></p>
                     </div>
                 </div>
             </div>

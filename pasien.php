@@ -108,19 +108,19 @@
                     <?php
                     }
                     ?>
-                    <div class="mb-3 w-25">
+                    <div class="mb-3 ">
                         <label for="nama">Nama Pasien <span class="text-danger">*</span></label>
                         <input type="text" name="nama" class="form-control" required placeholder="Masukkan pasien" value="<?php echo $nama ?>">
                     </div>
-                    <div class="mb-3 w-25">
+                    <div class="mb-3 ">
                         <label for="alamat">Alamat <span class="text-danger">*</span></label>
                         <input type="text" name="alamat" class="form-control" required placeholder="Masukkan alamat" value="<?php echo $alamat ?>">
                     </div>
-                    <div class="mb-3 w-25">
+                    <div class="mb-3 ">
                         <label for="no_ktp">No. KTP <span class="text-danger">*</span></label>
                         <input type="number" name="no_ktp" class="form-control" required placeholder="16 digit No. KTP" value="<?php echo $no_ktp ?>">
                     </div>
-                    <div class="mb-3 w-25">
+                    <div class="mb-3 ">
                         <label for="no_hp">No. HP <span class="text-danger">*</span></label>
                         <input type="number" name="no_hp" class="form-control" required placeholder="08xxxx" value="<?php echo $no_hp ?>">
                     </div>

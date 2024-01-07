@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card" style="margin-top: 5rem;">
                 <div class="card-header text-center" style="font-weight: bold; font-size: 32px;">Register</div>
                 <div class="card-body">
                     <form method="POST" action="index.php?page=registerUser">
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="password" name="confirm_password" class="form-control" required placeholder="Masukkan password konfirmasi">
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                            <button type="submit" class="btn btn-primary btn-block" style="margin-top: 0.5rem;">Register</button>
                         </div>
                     </form>
                     <div class="text-center">

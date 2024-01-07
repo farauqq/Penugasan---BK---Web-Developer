@@ -47,21 +47,34 @@
 
     if (isset($_GET['aksi'])) {
         if ($_GET['aksi'] == 'hapus') {
-            $stmt = $mysqli->prepare("DELETE FROM dokter WHERE id = ?");
-            $stmt->bind_param("i", $_GET['id']);
-            $stmt->execute();
-
-            if ($stmt->affected_rows > 0) {
-                echo "
-                    <script> 
-                        alert('Berhasil menghapus data.');
-                        document.location='index.php?page=dokter';
-                    </script>
-                ";
+            $id = $_GET['id'];
+    
+            // Check if there are any jadwal_periksa records that reference the dokter
+            $result = mysqli_query($mysqli, "SELECT * FROM jadwal_periksa WHERE id_dokter = '$id'");
+            if (mysqli_num_rows($result) == 0) {
+                // If there are no jadwal_periksa records that reference the dokter, delete the dokter
+                $stmt = $mysqli->prepare("DELETE FROM dokter WHERE id = ?");
+                $stmt->bind_param("i", $id);
+    
+                if ($stmt->execute()) {
+                    echo "
+                        <script> 
+                            alert('Berhasil menghapus data.');
+                            document.location='index.php?page=dokter';
+                        </script>
+                    ";
+                } else {
+                    echo "
+                        <script> 
+                            alert('Gagal menghapus data: " . mysqli_error($mysqli) . "');
+                            document.location='index.php?page=dokter';
+                        </script>
+                    ";
+                }
             } else {
                 echo "
                     <script> 
-                        alert('Gagal menghapus data: " . mysqli_error($mysqli) . "');
+                        alert('Gagal menghapus data: Dokter masih memiliki jadwal periksa.');
                         document.location='index.php?page=dokter';
                     </script>
                 ";
@@ -99,27 +112,27 @@
                     <?php
                     }
                     ?>
-                    <div class="mb-3 w-25">
+                    <div class="mb-3 ">
                         <label for="nama">Nama Dokter <span class="text-danger">*</span></label>
                         <input type="text" name="nama" class="form-control" required placeholder="Masukkan nama" value="<?php echo $nama ?>">
                     </div>
-                    <div class="mb-3 w-25">
+                    <div class="mb-3 ">
                         <label for="nip">NIP Dokter <span class="text-danger">*</span></label>
                         <input type="text" name="nip" class="form-control" required placeholder="Masukkan NIP" value="<?php echo $nip ?>">
                     </div>
-                    <div class="mb-3 w-25">
+                    <div class="mb-3 ">
                         <label for="password">Password Dokter <span class="text-danger">*</span></label>
                         <input type="password" name="password" class="form-control" required placeholder="Masukkan password" value="<?php echo $password ?>">
                     </div>
-                    <div class="mb-3 w-25">
+                    <div class="mb-3">
                         <label for="alamat">Alamat <span class="text-danger">*</span></label>
                         <input type="text" name="alamat" class="form-control" required placeholder="Masukkan alamat" value="<?php echo $alamat ?>">
                     </div>
-                    <div class="mb-3 w-25">
+                    <div class="mb-3">
                         <label for="no_hp">No. HP <span class="text-danger">*</span></label>
                         <input type="number" name="no_hp" class="form-control" required placeholder="08xxxxxxxxxx" value="<?php echo $no_hp ?>">
                     </div>
-                    <div class="dropdown mb-3 w-25">
+                    <div class="dropdown mb-3">
                         <label for="id_poli">Poli Dokter <span class="text-danger">*</span></label>
                         <select class="form-select" name="id_poli" aria-label="id_poli">
                             <option selected>Pilih Poli...</option>
@@ -138,7 +151,6 @@
                     <div class="d-flex justify-content-end mt-2">
                         <button type="submit" name="simpanData" class="btn btn-primary">Simpan</button>
                     </div>
-    
                 </form>
             </div>
 
@@ -149,6 +161,7 @@
                             <th valign="middle">No</th>
                             <th valign="middle">NIP</th>
                             <th valign="middle">Nama</th>
+                            <th valign="middle">Poli</th>
                             <th valign="middle">Alamat</th>
                             <th valign="middle">No Hp</th>
                             <th valign="middle" style="width: 0.5%;" colspan="2">Aksi</th>
@@ -156,7 +169,7 @@
                     </thead>
                     <tbody>
                         <?php
-                            $result = mysqli_query($mysqli, "SELECT * FROM dokter");
+                            $result = mysqli_query($mysqli, "SELECT dokter.*, poli.nama_poli FROM dokter JOIN poli ON dokter.id_poli = poli.id");
                             $no = 1;
                             while ($data = mysqli_fetch_array($result)) :
                             ?>
@@ -164,6 +177,7 @@
                                     <td><?php echo $no++ ?></td>
                                     <td><?php echo $data['nip'] ?></td>
                                     <td><?php echo $data['nama'] ?></td>
+                                    <td><?php echo $data['nama_poli'] ?></td>
                                     <td><?php echo $data['alamat'] ?></td>
                                     <td><?php echo $data['no_hp'] ?></td>
                                     <td>
@@ -177,7 +191,6 @@
                                         </a>
                                     </td>
                                 </tr>
-
                         <?php endwhile; ?>
                     </tbody>
                 </table>

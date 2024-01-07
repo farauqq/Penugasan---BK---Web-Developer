@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jan 2024 pada 19.59
--- Versi server: 10.4.28-MariaDB
--- Versi PHP: 8.2.4
+-- Generation Time: Jan 07, 2024 at 08:59 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `daftar_poli`
+-- Table structure for table `daftar_poli`
 --
 
 CREATE TABLE `daftar_poli` (
@@ -37,17 +37,16 @@ CREATE TABLE `daftar_poli` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `daftar_poli`
+-- Dumping data for table `daftar_poli`
 --
 
 INSERT INTO `daftar_poli` (`id`, `id_pasien`, `id_jadwal`, `keluhan`, `no_antrian`, `tanggal`) VALUES
-(23, 5, 3, 'jantung berdetak keras', 1, '2024-01-05 15:52:16'),
-(24, 8, 1, 'Gigi Berlubang', 1, '2024-01-05 17:56:12');
+(37, 13, 1, 'Gigi Berlubang', 1, '2024-01-07 18:15:15');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_periksa`
+-- Table structure for table `detail_periksa`
 --
 
 CREATE TABLE `detail_periksa` (
@@ -57,16 +56,17 @@ CREATE TABLE `detail_periksa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `detail_periksa`
+-- Dumping data for table `detail_periksa`
 --
 
 INSERT INTO `detail_periksa` (`id`, `id_periksa`, `id_obat`) VALUES
-(19, 83, 1);
+(33, 108, 3),
+(34, 108, 4);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dokter`
+-- Table structure for table `dokter`
 --
 
 CREATE TABLE `dokter` (
@@ -80,20 +80,20 @@ CREATE TABLE `dokter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `dokter`
+-- Dumping data for table `dokter`
 --
 
 INSERT INTO `dokter` (`id`, `nama`, `alamat`, `no_hp`, `id_poli`, `nip`, `password`) VALUES
-(1, 'dr. Bram', 'Jl. Pemuda', '083424212321', 1, 903218321, '$2y$10$R1Cx/1p6VWxeT.uW6/GLpO6ydqEri079O3vAMCBzS0NUzq00bnQ4.'),
-(2, 'dr. Heartman', 'Jl. Pahlawan', '08639284892', 2, 903218117, '$2y$10$gguvWIkx7qoNCgCmtLDj8upxPVRZGaD3yTjgEpSHDr.G8i7nb8nGO'),
-(3, 'dr. Sulfat', 'Jl. Singaparna', '087927482648', 2, 903218116, '$2y$10$EnjXVjLRqU/t7lD/GIgxmuJC2rFyhcGM1I9V0ytqwJ5/akIUos6U.'),
-(4, 'dr. Lilia dewi', 'Jl. Genuk Indah', '08953954597', 5, 33747, '$2y$10$9bAlotXFQWrqXTPpDQR9RuIKWxR/igLd3lRObL.YoPUQFoJgvU/we'),
-(5, 'dr. Dosy Mudi', 'Jl. Peterongan', '089539545216', 4, 50272, '$2y$10$cGr7xn1lpC0S7fH9xJ02wO/bdQGHzyAnoV9OmrTlIioz7EmB1LxjG');
+(1, 'dr. Eko', 'Jl. Pahlawan ', '0895395315698', 1, 1111, '$2y$10$YifgfcmGdkueUpwVMuGiU.JZDEfmTTUOEX5ItBrEUYSMa11MzEWFC'),
+(2, 'dr. Budi', 'Jl. Genuk Indah', '0895395315516', 2, 2222, '$2y$10$7mkxjQ5X/iQSqPvEO3c5du9n32VWmV8DGGyDFMZ3jh8yjnluFHtG.'),
+(3, 'dr. Handayani', 'Jl. Mlonggo', '0894395315974', 3, 3333, '$2y$10$EsWEgw6zg..K4Px6eBhVrOo1FXmaDGymzhwz2UdyyCTjdHpfZLlt2'),
+(4, 'dr. Ariadi', 'Jl. Getaspejaten', '0895325315657', 4, 4444, '$2y$10$PgXMHcPYnoEKm42IffHFpeGmmLjJuUTF.mWLaR1Ob6x7SdZlmJFOq'),
+(5, 'dr. Jamal', 'Jl. Baru', '081642454762', 1, 5555, '$2y$10$icWNhcxkRaKE7tT.bKJR6.3rqZWWtPfHRuyz6rWZ2rHzQib99.xhq');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jadwal_periksa`
+-- Table structure for table `jadwal_periksa`
 --
 
 CREATE TABLE `jadwal_periksa` (
@@ -101,25 +101,25 @@ CREATE TABLE `jadwal_periksa` (
   `id_dokter` int(10) UNSIGNED NOT NULL,
   `hari` enum('Senin','Selasa','Rabu','Kamis','Jumat','Sabtu') NOT NULL,
   `jam_mulai` time NOT NULL,
-  `jam_selesai` time NOT NULL
+  `jam_selesai` time NOT NULL,
+  `statues` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `jadwal_periksa`
+-- Dumping data for table `jadwal_periksa`
 --
 
-INSERT INTO `jadwal_periksa` (`id`, `id_dokter`, `hari`, `jam_mulai`, `jam_selesai`) VALUES
-(1, 1, 'Senin', '13:00:00', '15:00:00'),
-(2, 2, 'Selasa', '10:00:00', '12:00:00'),
-(3, 3, 'Kamis', '20:16:00', '23:19:00'),
-(4, 2, 'Kamis', '10:50:00', '00:50:00'),
-(5, 4, 'Selasa', '10:30:00', '00:00:00'),
-(6, 5, '', '20:30:00', '11:00:00');
+INSERT INTO `jadwal_periksa` (`id`, `id_dokter`, `hari`, `jam_mulai`, `jam_selesai`, `statues`) VALUES
+(1, 1, 'Senin', '08:00:00', '11:00:00', 1),
+(2, 1, 'Senin', '17:00:00', '20:00:00', 0),
+(3, 2, 'Selasa', '08:00:00', '11:00:00', 0),
+(4, 3, 'Rabu', '08:00:00', '11:00:00', 0),
+(5, 4, 'Kamis', '07:00:00', '11:00:00', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `obat`
+-- Table structure for table `obat`
 --
 
 CREATE TABLE `obat` (
@@ -130,19 +130,21 @@ CREATE TABLE `obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `obat`
+-- Dumping data for table `obat`
 --
 
 INSERT INTO `obat` (`id`, `nama_obat`, `kemasan`, `harga`) VALUES
 (1, 'Termorex Patch Bayi & Anak', 'Sachet', 8500),
 (2, 'Obh Combi Anak Batuk Flu 60ml', 'Botol', 21000),
 (3, 'Paracetamol If 500mg ', 'Tablet', 5000),
-(4, 'Imboost Force', 'Tablet', 74000);
+(4, 'Imboost Force', 'Tablet', 74000),
+(5, 'Amlodipine If 10mg', 'Tablet', 5500),
+(6, 'Prosogan Fd 30mg', 'Tablet', 25000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pasien`
+-- Table structure for table `pasien`
 --
 
 CREATE TABLE `pasien` (
@@ -155,22 +157,16 @@ CREATE TABLE `pasien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `pasien`
+-- Dumping data for table `pasien`
 --
 
 INSERT INTO `pasien` (`id`, `nama`, `alamat`, `no_ktp`, `no_hp`, `no_rm`) VALUES
-(1, 'Fahri', 'Jl. Sunan Muria', '$2y$10$FKl1GSqTQZBstnCNEQYzieX5rmGfa/Z4LbIZm1vzR7wPjIuTwrumy', '0895395343523', '2024-01-05-1'),
-(2, 'Jovin', 'Jl. Demaan', '$2y$10$U1H6LgzwtY.flL22.l0uPOLLYdsOjB3WR6RAjjLIqfOwluqtB4Ns6', '0895395343856', '2024-01-05-2'),
-(3, 'Dita', 'Jl. Tanjung', '$2y$10$yAKMShvXk5gubp/LENyEKuJDNb6zy78i0shnyetN9U/qHBmO23suC', '0895395343248', '2024-01-05-3'),
-(5, 'Tita', 'Jl. Mejobo', '$2y$10$oDtmmRREw6YBVt24zJoLQeC3rjrWqx0i5/RTfLpjOxhX3RGg84Kna', '0895395343157', '2024-01-05-4'),
-(6, 'Rian', 'Jl. Jepang Pakis', '$2y$10$RhNnKUQ2VWeO1j70NlX0WuGAUx7iTWaJDcmhH9RqyG3mKKZGdcKia', '0895395343821', '2024-01-05-5'),
-(7, 'Faresh', 'Jl. Besito', '$2y$10$97ii31aHppx1sbJI6YulI.dPeVmfGRq5dmwUP821rxPLUQSPChgZO', '0895335343764', '2024-01-05-6'),
-(8, 'Riris', 'Perumahan Citragrand Tembalang', '$2y$10$MWjYtXYxiuhjzkq9OiqMX.pEF.QbMCyY8hccXBcx24WeOQm9wH0/i', '0895395343689', '2024-01-05-7');
+(13, 'Ahmad Riris ', 'Jl. Terban', '$2y$10$AyQ.opVM8CImyq/4UPUAAebLXV2/Jh4WiXpOeMUq54CvqMZZIV.uq', '081642454762', '2024-01-07-1');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `periksa`
+-- Table structure for table `periksa`
 --
 
 CREATE TABLE `periksa` (
@@ -182,16 +178,16 @@ CREATE TABLE `periksa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `periksa`
+-- Dumping data for table `periksa`
 --
 
 INSERT INTO `periksa` (`id`, `id_daftar_poli`, `tgl_periksa`, `catatan`, `biaya_periksa`) VALUES
-(83, 23, '2024-01-05 16:54:40', 'minum obat 3x1', 177000);
+(108, 37, '2024-01-07 20:48:55', 'Diminum sehabis makan 3x1/hari', 229000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `poli`
+-- Table structure for table `poli`
 --
 
 CREATE TABLE `poli` (
@@ -201,19 +197,19 @@ CREATE TABLE `poli` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `poli`
+-- Dumping data for table `poli`
 --
 
 INSERT INTO `poli` (`id`, `nama_poli`, `keterangan`) VALUES
 (1, 'Poli Gigi', 'Spesialisasi dalam perawatan gigi dan masalah kesehatan mulut'),
 (2, 'Poli Jantung', 'Khusus untuk perawatan penyakit jantung'),
-(4, 'Poli Anak', 'Menyediakan layanan kesehatan khusus untuk bayi, anak-anak, dan remaja.'),
-(5, 'Poli Mata', 'Menangani masalah kesehatan mata, termasuk pemeriksaan mata dan kacamata');
+(3, 'Poli Anak', 'Menyediakan layanan kesehatan khusus untuk bayi, anak-anak, dan remaja.'),
+(4, 'Poli Mata', 'Menangani masalah kesehatan mata, termasuk pemeriksaan mata dan kacamata');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -223,18 +219,18 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`) VALUES
-(1, 'farauq', '$2y$10$KnVTpxBXmq6s/aDjlaH/RuQy7ULTAYoYwUnoMyIH4FwkSslszfHDa');
+(1, 'farauq', '$2y$10$op3Vo/HcSA7dYl1aE85uo.BVWQXg1n9BbL4MlNPLVolQ4xgrYMI4W');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `daftar_poli`
+-- Indexes for table `daftar_poli`
 --
 ALTER TABLE `daftar_poli`
   ADD PRIMARY KEY (`id`),
@@ -242,7 +238,7 @@ ALTER TABLE `daftar_poli`
   ADD KEY `id_jadwal` (`id_jadwal`);
 
 --
--- Indeks untuk tabel `detail_periksa`
+-- Indexes for table `detail_periksa`
 --
 ALTER TABLE `detail_periksa`
   ADD PRIMARY KEY (`id`),
@@ -250,140 +246,140 @@ ALTER TABLE `detail_periksa`
   ADD KEY `id_obat` (`id_obat`);
 
 --
--- Indeks untuk tabel `dokter`
+-- Indexes for table `dokter`
 --
 ALTER TABLE `dokter`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_poli` (`id_poli`);
 
 --
--- Indeks untuk tabel `jadwal_periksa`
+-- Indexes for table `jadwal_periksa`
 --
 ALTER TABLE `jadwal_periksa`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_dokter` (`id_dokter`);
 
 --
--- Indeks untuk tabel `obat`
+-- Indexes for table `obat`
 --
 ALTER TABLE `obat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `pasien`
+-- Indexes for table `pasien`
 --
 ALTER TABLE `pasien`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `periksa`
+-- Indexes for table `periksa`
 --
 ALTER TABLE `periksa`
   ADD PRIMARY KEY (`id`),
   ADD KEY `periksa_ibfk_1` (`id_daftar_poli`);
 
 --
--- Indeks untuk tabel `poli`
+-- Indexes for table `poli`
 --
 ALTER TABLE `poli`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `daftar_poli`
+-- AUTO_INCREMENT for table `daftar_poli`
 --
 ALTER TABLE `daftar_poli`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT untuk tabel `detail_periksa`
+-- AUTO_INCREMENT for table `detail_periksa`
 --
 ALTER TABLE `detail_periksa`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT untuk tabel `dokter`
+-- AUTO_INCREMENT for table `dokter`
 --
 ALTER TABLE `dokter`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `jadwal_periksa`
+-- AUTO_INCREMENT for table `jadwal_periksa`
 --
 ALTER TABLE `jadwal_periksa`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT untuk tabel `obat`
---
-ALTER TABLE `obat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `pasien`
---
-ALTER TABLE `pasien`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT untuk tabel `periksa`
---
-ALTER TABLE `periksa`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
-
---
--- AUTO_INCREMENT untuk tabel `poli`
---
-ALTER TABLE `poli`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `obat`
+--
+ALTER TABLE `obat`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `pasien`
+--
+ALTER TABLE `pasien`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `periksa`
+--
+ALTER TABLE `periksa`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+
+--
+-- AUTO_INCREMENT for table `poli`
+--
+ALTER TABLE `poli`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `daftar_poli`
+-- Constraints for table `daftar_poli`
 --
 ALTER TABLE `daftar_poli`
   ADD CONSTRAINT `daftar_poli_ibfk_3` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id`),
   ADD CONSTRAINT `daftar_poli_ibfk_4` FOREIGN KEY (`id_jadwal`) REFERENCES `jadwal_periksa` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `detail_periksa`
+-- Constraints for table `detail_periksa`
 --
 ALTER TABLE `detail_periksa`
   ADD CONSTRAINT `detail_periksa_ibfk_1` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id`),
   ADD CONSTRAINT `detail_periksa_ibfk_2` FOREIGN KEY (`id_periksa`) REFERENCES `periksa` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `dokter`
+-- Constraints for table `dokter`
 --
 ALTER TABLE `dokter`
   ADD CONSTRAINT `dokter_ibfk_1` FOREIGN KEY (`id_poli`) REFERENCES `poli` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `jadwal_periksa`
+-- Constraints for table `jadwal_periksa`
 --
 ALTER TABLE `jadwal_periksa`
   ADD CONSTRAINT `jadwal_periksa_ibfk_1` FOREIGN KEY (`id_dokter`) REFERENCES `dokter` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `periksa`
+-- Constraints for table `periksa`
 --
 ALTER TABLE `periksa`
   ADD CONSTRAINT `periksa_ibfk_1` FOREIGN KEY (`id_daftar_poli`) REFERENCES `daftar_poli` (`id`);

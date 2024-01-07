@@ -78,18 +78,17 @@ if (isset($_GET['aksi'])) {
                     <?php
                     }
                     ?>
-                    <div class="mb-3 w-25">
+                    <div class="mb-3 ">
                         <label for="nama_poli">Nama Poli <span class="text-danger">*</span></label>
                         <input type="text" name="nama_poli" class="form-control" required placeholder="Masukkan nama poli" value="<?php echo $nama_poli ?>">
                     </div>
-                    <div class="mb-3 w-25">
+                    <div class="mb-3 ">
                         <label for="keterangan">Keterangan <span class="text-danger">*</span></label>
                         <textarea name="keterangan" class="form-control" required placeholder="Masukkan keterangan"><?php echo $keterangan ?></textarea>
                     </div>
                     <div class="d-flex justify-content-end mt-2">
                         <button type="submit" name="simpanData" class="btn btn-primary">Simpan</button>
                     </div>
-    
                 </form>
             </div>
 
@@ -124,7 +123,6 @@ if (isset($_GET['aksi'])) {
                                         </a>
                                     </td>
                                 </tr>
-
                         <?php endwhile; ?>
                     </tbody>
                 </table>
